@@ -35,11 +35,11 @@ const Header = props => {
 
         const themeIcon = isDarkMode ? <FiSun /> : <FaMoon />
 
-        const bgColor = isDarkMode ? '#181818' : '#f9f9f9'
+        const bgColor = isDarkMode ? '#0f0f0f' : '#ffffff'
 
-        const textColor = isDarkMode ? '#f9f9f9' : '#181818'
+        const textColor = isDarkMode ? '#ffffff' : '#0f0f0f'
 
-        const logoutButtonColor = isDarkMode ? '#f9f9f9' : '#3b82f6'
+        const logoutButtonColor = isDarkMode ? '#ffffff' : '#3b82f6'
 
         return (
           <>

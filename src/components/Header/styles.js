@@ -7,6 +7,9 @@ export const NavbarMobile = styled.div`
   height: 50px;
   padding: 6px;
   background-color: ${props => props.bgColor};
+  position: sticky;
+  top: 0;
+  left: 0;
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -19,6 +22,9 @@ export const Navbar = styled.div`
   padding: 8px;
   height: 60px;
   background-color: ${props => props.bgColor};
+  position: sticky;
+  top: 0;
+  left: 0;
 
   @media screen and (max-width: 768px) {
     display: none;
