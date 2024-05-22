@@ -31,7 +31,7 @@ export const LoaderContainer = styled.div`
   align-items: center;
 `
 
-export const SearchButton = styled.button`
+export const SearchIconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,13 +72,13 @@ export const Suggestion = styled.p`
 `
 
 export const RetryButton = styled.button`
-border:none;
-outline: none;
-border-radius: 6px;
-cursor: pointer;
-background-color: violet;
-color: #ffffff;
-font-size; 14px;
-width: 80px;
-height: 30px;
+    border:none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: violet;
+    color: #ffffff;
+    font-size; 14px;
+    width: 80px;
+    height: 30px;
 `

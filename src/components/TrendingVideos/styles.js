@@ -31,7 +31,7 @@ export const LoaderContainer = styled.div`
   align-items: center;
 `
 
-export const SearchButton = styled.button`
+export const SearchIconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

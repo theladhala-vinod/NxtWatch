@@ -13,10 +13,8 @@ export const Banner = styled.div`
   display: ${props => props.display};
   justify-content: space-between;
   padding: 32px;
-  @media screen and (min-width: 768px) {
-    background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png ');
-    background-size: cover;
-  }
+  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png ');
+  background-size: cover;
 `
 export const BannerDescription = styled.div`
   width: 200px;

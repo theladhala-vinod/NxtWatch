@@ -1,5 +1,6 @@
 import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import Popup from 'reactjs-popup'
 import {FaMoon} from 'react-icons/fa'
 import {FiSun, FiLogOut} from 'react-icons/fi'
 import {GiHamburgerMenu} from 'react-icons/gi'
@@ -14,6 +15,11 @@ import {
   Navbar,
   LogoutButton,
   ProfilePicture,
+  ModalContainer,
+  ModalDesc,
+  AlignRow,
+  CancelButton,
+  ConfirmButton,
 } from './styles'
 
 const Header = props => {
@@ -68,14 +74,33 @@ const Header = props => {
                   </NavButton>
                 </NavListItem>
                 <NavListItem>
-                  <NavButton
-                    type="button"
-                    aria-label="logout"
-                    color={textColor}
-                    onClick={onClickLogout}
+                  <Popup
+                    modal
+                    trigger={
+                      <NavButton type="button" data-testid="iconButton">
+                        <FiLogOut />
+                      </NavButton>
+                    }
                   >
-                    <FiLogOut />
-                  </NavButton>
+                    {close => (
+                      <ModalContainer>
+                        <ModalDesc>Are you sure, you want to logout</ModalDesc>
+                        <AlignRow>
+                          <CancelButton
+                            type="button"
+                            data-testid="closeButton"
+                            onClick={() => close()}
+                          >
+                            Cancel
+                          </CancelButton>
+
+                          <ConfirmButton type="button" onClick={onClickLogout}>
+                            Confirm
+                          </ConfirmButton>
+                        </AlignRow>
+                      </ModalContainer>
+                    )}
+                  </Popup>
                 </NavListItem>
               </NavList>
             </NavbarMobile>
@@ -95,21 +120,43 @@ const Header = props => {
                   </NavButton>
                 </NavListItem>
                 <NavListItem>
-                  <NavButton type="button" color={textColor}>
-                    <ProfilePicture
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-                      alt="profile"
-                    />
-                  </NavButton>
+                  <ProfilePicture
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+                    alt="profile"
+                  />
                 </NavListItem>
                 <NavListItem>
-                  <LogoutButton
-                    type="button"
-                    color={logoutButtonColor}
-                    onClick={onClickLogout}
+                  <Popup
+                    modal
+                    trigger={
+                      <LogoutButton
+                        type="button"
+                        color={logoutButtonColor}
+                        onClick={onClickLogout}
+                      >
+                        Logout
+                      </LogoutButton>
+                    }
                   >
-                    Logout
-                  </LogoutButton>
+                    {close => (
+                      <ModalContainer>
+                        <ModalDesc>Are you sure, you want to logout</ModalDesc>
+                        <AlignRow>
+                          <CancelButton
+                            type="button"
+                            data-testid="closeButton"
+                            onClick={() => close()}
+                          >
+                            Cancel
+                          </CancelButton>
+
+                          <ConfirmButton type="button" onClick={onClickLogout}>
+                            Confirm
+                          </ConfirmButton>
+                        </AlignRow>
+                      </ModalContainer>
+                    )}
+                  </Popup>
                 </NavListItem>
               </NavList>
             </Navbar>

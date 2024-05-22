@@ -104,7 +104,7 @@ const Sidebar = () => (
               />
             </ContactUsIcons>
             <ContactUsDescription color={textColor}>
-              Enjoy! Now to see your channels and recommendations
+              Enjoy! Now to see your channels and recommendations!
             </ContactUsDescription>
           </section>
         </SidebarContainer>

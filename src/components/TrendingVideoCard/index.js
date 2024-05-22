@@ -4,16 +4,17 @@ import {
   VideoDetails,
   ProfileImage,
   VideoDescription,
-  VideoTitle,
-  VideoStats,
   ChannelName,
   StatsAndDateDiv,
+  VideoTitle,
+  VideoStats,
   ViewsCount,
   PublishedAt,
 } from './styles'
 
-const HomeVideoCard = props => {
+const TrendingVideoCard = props => {
   const {videoData} = props
+  console.log(videoData)
   return (
     <HomeVideosListItem>
       <Thumbnail src={videoData.thumbnailUrl} alt="video thumbnail" />
@@ -37,4 +38,4 @@ const HomeVideoCard = props => {
   )
 }
 
-export default HomeVideoCard
+export default TrendingVideoCard

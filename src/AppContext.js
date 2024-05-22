@@ -5,6 +5,8 @@ const AppContext = React.createContext({
   toggleDarkMode: () => {},
   activeTab: '',
   setActiveTab: () => {},
+  savedVideosList: [],
+  addToSavedVideosList: () => {},
 })
 
 export default AppContext

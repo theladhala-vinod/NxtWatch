@@ -1,13 +1,9 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {IoSearch} from 'react-icons/io5'
-import HomeVideoCard from '../HomeVideoCard'
+import TrendingVideoCard from '../TrendingVideoCard'
 import {
   HomeVideosContainer,
-  SearchContainer,
-  SearchInput,
-  SearchButton,
   HomeVideosList,
   LoaderContainer,
   NoSearchResults,
@@ -24,32 +20,20 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class HomeVideos extends Component {
+class TrendingVideos extends Component {
   state = {
-    searchValue: '',
     apiStatus: apiStatusConstants.initial,
-    homeVideosList: [],
+    trendingVideosList: [],
   }
 
   componentDidMount() {
-    this.getHomeVideos()
+    this.getTrendingVideos()
   }
 
-  onChangeSearchInput = e => {
-    this.setState({searchValue: e.target.value})
-  }
-
-  onEnterKeyPress = event => {
-    if (event.key === 'Enter') {
-      this.getHomeVideos()
-    }
-  }
-
-  getHomeVideos = async () => {
+  getTrendingVideos = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {searchValue} = this.state
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchValue}`
+    const apiUrl = `https://apis.ccbp.in/videos/trending`
     const options = {
       method: 'GET',
       headers: {
@@ -62,21 +46,20 @@ class HomeVideos extends Component {
       const data = await response.json()
       const formattedVideosData = data.videos.map(eachVideo => ({
         id: eachVideo.id,
-        title: eachVideo.title,
         channel: {
           name: eachVideo.channel.name,
           profileImageUrl: eachVideo.channel.profile_image_url,
         },
         publishedAt: eachVideo.published_at,
+        title: eachVideo.title,
         thumbnailUrl: eachVideo.thumbnail_url,
         viewCount: eachVideo.view_count,
       }))
       this.setState({
         apiStatus: apiStatusConstants.success,
-        homeVideosList: formattedVideosData,
+        trendingVideosList: formattedVideosData,
       })
     }
-
     if (!response.ok) {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
@@ -88,37 +71,16 @@ class HomeVideos extends Component {
     </LoaderContainer>
   )
 
-  renderNoSearchResultsView = () => (
-    <NoSearchResults>
-      <NoResultsImage
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-        alt="no videos"
-      />
-      <Result>No Search results found</Result>
-      <Suggestion>Try different key words or remove search filter</Suggestion>
-      <RetryButton type="button" onClick={this.getHomeVideos}>
-        Retry
-      </RetryButton>
-    </NoSearchResults>
-  )
+  renderTrendingVideosList = () => {
+    const {trendingVideosList} = this.state
 
-  renderSearchResultsView = () => {
-    const {homeVideosList} = this.state
     return (
       <HomeVideosList>
-        {homeVideosList.map(eachVideo => (
-          <HomeVideoCard key={eachVideo.id} videoData={eachVideo} />
+        {trendingVideosList.map(eachVideo => (
+          <TrendingVideoCard key={eachVideo.id} videoData={eachVideo} />
         ))}
       </HomeVideosList>
     )
-  }
-
-  renderHomeVideosList = () => {
-    const {homeVideosList} = this.state
-
-    return homeVideosList.length !== 0
-      ? this.renderSearchResultsView()
-      : this.renderNoSearchResultsView()
   }
 
   renderFailureView = () => {
@@ -129,25 +91,23 @@ class HomeVideos extends Component {
     return (
       <NoSearchResults>
         <NoResultsImage src={imgUrl} alt="failure view" />
-        <Result>Oops! Something went wrong</Result>
-        <Suggestion>
-          We are having some trouble completing your request. Please try again.
-        </Suggestion>
-        <RetryButton type="button" onClick={this.getHomeVideos}>
+        <Result>Oops! Something Went Wrong</Result>
+        <Suggestion>completing your request. Please try again.</Suggestion>
+        <RetryButton type="button" onClick={this.getTrendingVideos}>
           Retry
         </RetryButton>
       </NoSearchResults>
     )
   }
 
-  renderHomeVideos = () => {
+  renderTrendingVideos = () => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case 'IN_PROGRESS':
         return this.renderLoadingView()
       case 'SUCCESS':
-        return this.renderHomeVideosList()
+        return this.renderTrendingVideosList()
       case 'FAILURE':
         return this.renderFailureView()
       default:
@@ -156,30 +116,12 @@ class HomeVideos extends Component {
   }
 
   render() {
-    const {searchValue} = this.state
-
     return (
       <HomeVideosContainer data-testid="home">
-        <SearchContainer>
-          <SearchInput
-            type="search"
-            placeholder="Search"
-            value={searchValue}
-            onChange={this.onChangeSearchInput}
-            onKeyDown={this.onEnterKeyPress}
-          />
-          <SearchButton
-            type="button"
-            data-testid="searchButton"
-            onClick={this.getHomeVideos}
-          >
-            <IoSearch />
-          </SearchButton>
-        </SearchContainer>
-        {this.renderHomeVideos()}
+        {this.renderTrendingVideos()}
       </HomeVideosContainer>
     )
   }
 }
 
-export default HomeVideos
+export default TrendingVideos
