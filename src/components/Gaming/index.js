@@ -166,7 +166,7 @@ class Gaming extends Component {
                 <Sidebar />
                 <VideosContainer data-testid="gaming" bgColor={bgColor}>
                   <h2>Gaming</h2>
-                  <HomeVideosContainer data-testid="gaming">
+                  <HomeVideosContainer>
                     {this.renderGamingVideos()}
                   </HomeVideosContainer>
                 </VideosContainer>

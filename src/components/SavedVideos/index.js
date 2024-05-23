@@ -2,13 +2,22 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
-import SavedVideoCard from '../SavedVideoCard'
 import AppContext from '../../AppContext'
 import {
   MainContainer,
   VideosContainer,
   NoSavedVideosDiv,
   NoSavedVideosImage,
+  HomeVideosListItem,
+  Thumbnail,
+  VideoDetails,
+  VideoDescription,
+  ChannelName,
+  StatsAndDateDiv,
+  VideoTitle,
+  VideoStats,
+  ViewsCount,
+  PublishedAt,
 } from './styles'
 
 class SavedVideos extends Component {
@@ -27,7 +36,24 @@ class SavedVideos extends Component {
             <div>
               <h2>Saved Videos</h2>
               {savedVideosList.map(eachVideo => (
-                <SavedVideoCard key={eachVideo.id} videoData={eachVideo} />
+                <HomeVideosListItem key={eachVideo.id}>
+                  <Thumbnail
+                    src={eachVideo.thumbnailUrl}
+                    alt="video thumbnail"
+                  />
+                  <VideoDetails>
+                    <VideoDescription>
+                      <VideoTitle>{eachVideo.title}</VideoTitle>
+                      <VideoStats>
+                        <ChannelName>{eachVideo.channel.name}</ChannelName>
+                        <StatsAndDateDiv>
+                          <ViewsCount>{`${eachVideo.viewCount} views `}</ViewsCount>
+                          <PublishedAt>{eachVideo.publishedAt}</PublishedAt>
+                        </StatsAndDateDiv>
+                      </VideoStats>
+                    </VideoDescription>
+                  </VideoDetails>
+                </HomeVideosListItem>
               ))}
             </div>
           )
