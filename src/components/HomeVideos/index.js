@@ -16,6 +16,7 @@ import {
   Suggestion,
   RetryButton,
 } from './styles'
+import AppContext from '../../AppContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -129,7 +130,7 @@ class HomeVideos extends Component {
     return (
       <NoSearchResults>
         <NoResultsImage src={imgUrl} alt="failure view" />
-        <Result>Oops! Something went wrong</Result>
+        <Result>Oops! Something Went Wrong</Result>
         <Suggestion>
           We are having some trouble completing your request. Please try again.
         </Suggestion>
@@ -159,25 +160,35 @@ class HomeVideos extends Component {
     const {searchValue} = this.state
 
     return (
-      <HomeVideosContainer data-testid="home">
-        <SearchContainer>
-          <SearchInput
-            type="search"
-            placeholder="Search"
-            value={searchValue}
-            onChange={this.onChangeSearchInput}
-            onKeyDown={this.onEnterKeyPress}
-          />
-          <SearchButton
-            type="button"
-            data-testid="searchButton"
-            onClick={this.getHomeVideos}
-          >
-            <IoSearch />
-          </SearchButton>
-        </SearchContainer>
-        {this.renderHomeVideos()}
-      </HomeVideosContainer>
+      <AppContext.Consumer>
+        {value => {
+          const {isDarkMode} = value
+          const bgColor = isDarkMode ? '#181818' : '#ffffff'
+          return (
+            <HomeVideosContainer data-testid="home" bgColor={bgColor}>
+              <SearchContainer bgColor={bgColor}>
+                <SearchInput
+                  type="search"
+                  placeholder="Search"
+                  value={searchValue}
+                  onChange={this.onChangeSearchInput}
+                  onKeyDown={this.onEnterKeyPress}
+                  bgColor={bgColor}
+                />
+                <SearchButton
+                  type="button"
+                  data-testid="searchButton"
+                  onClick={this.getHomeVideos}
+                  bgColor={bgColor}
+                >
+                  <IoSearch />
+                </SearchButton>
+              </SearchContainer>
+              {this.renderHomeVideos()}
+            </HomeVideosContainer>
+          )
+        }}
+      </AppContext.Consumer>
     )
   }
 }

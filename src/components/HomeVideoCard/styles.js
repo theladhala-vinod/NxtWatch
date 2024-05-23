@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const HomeVideosListItem = styled.li`
   list-style-type: none;
@@ -69,4 +70,9 @@ export const ViewsCount = styled.p`
 export const PublishedAt = styled.p`
   margin-right: 12px;
   font-size: 12px;
+`
+
+export const VideoLink = styled(Link)`
+  text-decoration: none;
+  color: #090909;
 `

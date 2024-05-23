@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const HomeVideosContainer = styled.div`
-  background-color: #f1f5f9;
+  background-color: ${props => props.bgColor};
   width: 100%;
   @media screen and (min-width: 576px) {
   }
@@ -10,6 +10,7 @@ export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 12px;
+
   @media screen and (min-width: 576px) {
     width: 400px;
   }
@@ -22,13 +23,7 @@ export const SearchInput = styled.input`
   height: 30px;
   border: 1px solid grey;
   padding: 8px;
-`
-
-export const LoaderContainer = styled.div`
-  min-height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: ${props => props.bgColor};
 `
 
 export const SearchButton = styled.button`
@@ -38,6 +33,13 @@ export const SearchButton = styled.button`
   width: 50px;
   height: 30px;
   border: 1px solid grey;
+  background-color: ${props => props.bgColor};
+`
+export const LoaderContainer = styled.div`
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 export const HomeVideosList = styled.ul`
   display: flex;

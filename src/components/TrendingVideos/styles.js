@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const HomeVideosContainer = styled.div`
   background-color: #f1f5f9;
   width: 100%;
+  background-color: ${props => props.bgColor};
   @media screen and (min-width: 576px) {
   }
 `

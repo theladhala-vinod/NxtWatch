@@ -12,17 +12,6 @@ import {
 } from './styles'
 
 class SavedVideos extends Component {
-  renderNoSavedVideosList = () => (
-    <NoSavedVideosDiv>
-      <NoSavedVideosImage
-        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
-        alt="no saved videos"
-      />
-      <h2>No saved videos found</h2>
-      <p>Save your videos by clicking a button</p>
-    </NoSavedVideosDiv>
-  )
-
   render() {
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken === undefined) {
@@ -33,7 +22,7 @@ class SavedVideos extends Component {
       <AppContext.Consumer>
         {value => {
           const {isDarkMode, savedVideosList} = value
-          console.log(isDarkMode)
+          const bgColor = isDarkMode ? '#0f0f0f' : '#ffffff'
           const renderSavedVideosList = () => (
             <div>
               <h2>Saved Videos</h2>
@@ -42,14 +31,24 @@ class SavedVideos extends Component {
               ))}
             </div>
           )
+          const renderNoSavedVideosList = () => (
+            <NoSavedVideosDiv>
+              <NoSavedVideosImage
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
+                alt="no saved videos"
+              />
+              <h2>No saved videos found</h2>
+              <p>Save your videos by clicking a button</p>
+            </NoSavedVideosDiv>
+          )
           return (
             <>
               <Header />
               <MainContainer>
                 <Sidebar />
-                <VideosContainer>
+                <VideosContainer data-testid="savedVideos" bgColor={bgColor}>
                   {savedVideosList.length === 0
-                    ? this.renderNoSavedVideosList()
+                    ? renderNoSavedVideosList()
                     : renderSavedVideosList()}
                 </VideosContainer>
               </MainContainer>

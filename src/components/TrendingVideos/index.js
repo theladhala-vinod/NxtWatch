@@ -12,6 +12,7 @@ import {
   Suggestion,
   RetryButton,
 } from './styles'
+import AppContext from '../../AppContext'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -92,7 +93,9 @@ class TrendingVideos extends Component {
       <NoSearchResults>
         <NoResultsImage src={imgUrl} alt="failure view" />
         <Result>Oops! Something Went Wrong</Result>
-        <Suggestion>completing your request. Please try again.</Suggestion>
+        <Suggestion>
+          We are having some trouble completing your request. Please try again.
+        </Suggestion>
         <RetryButton type="button" onClick={this.getTrendingVideos}>
           Retry
         </RetryButton>
@@ -117,9 +120,17 @@ class TrendingVideos extends Component {
 
   render() {
     return (
-      <HomeVideosContainer data-testid="home">
-        {this.renderTrendingVideos()}
-      </HomeVideosContainer>
+      <AppContext.Consumer>
+        {value => {
+          const {isDarkMode} = value
+          const bgColor = isDarkMode ? '#181818' : '#ffffff'
+          return (
+            <HomeVideosContainer data-testid="trending" bgColor={bgColor}>
+              {this.renderTrendingVideos()}
+            </HomeVideosContainer>
+          )
+        }}
+      </AppContext.Consumer>
     )
   }
 }

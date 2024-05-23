@@ -4,6 +4,7 @@ export const MainContainer = styled.div`
   display: flex;
 `
 export const VideosContainer = styled.div`
+  background-color: ${props => props.bgColor};
   width: 100%;
   @media screen and (min-width: 768px) {
     padding: 16px;

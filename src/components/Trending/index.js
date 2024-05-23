@@ -17,14 +17,14 @@ class Trending extends Component {
       <AppContext.Consumer>
         {value => {
           const {isDarkMode} = value
-          console.log(isDarkMode)
+          const bgColor = isDarkMode ? '#0f0f0f' : '#ffffff'
 
           return (
             <>
               <Header />
               <MainContainer>
                 <Sidebar />
-                <VideosContainer>
+                <VideosContainer data-test-id="trending" bgColor={bgColor}>
                   <h2>Trending</h2>
                   <TrendingVideos />
                 </VideosContainer>
