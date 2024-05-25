@@ -128,7 +128,6 @@ export const ButtonsDiv = styled.div`
 export const Button = styled.button`
   border: none;
   outline: none;
-  color: #606060;
   background-color: transparent;
   width: 80px;
   padding: 8px 0;

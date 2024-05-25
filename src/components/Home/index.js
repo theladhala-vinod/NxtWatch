@@ -240,7 +240,6 @@ class Home extends Component {
                       <RiCloseFill />
                     </CloseButton>
                   </Banner>
-
                   <HomeVideosContainer data-testid="home" bgColor={bgColor}>
                     <SearchContainer bgColor={bgColor}>
                       <SearchInput

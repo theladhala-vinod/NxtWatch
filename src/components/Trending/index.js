@@ -170,7 +170,7 @@ class Trending extends Component {
               <Header />
               <MainContainer>
                 <Sidebar />
-                <VideosContainer data-test-id="trending" bgColor={bgColor}>
+                <VideosContainer data-testid="trending" bgColor={bgColor}>
                   <h2>Trending</h2>
                   <HomeVideosContainer>
                     {this.renderTrendingVideos()}

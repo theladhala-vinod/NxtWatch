@@ -85,7 +85,7 @@ class Gaming extends Component {
       <AppContext.Consumer>
         {value => {
           const {isDarkMode} = value
-          const bgColor = isDarkMode ? '#181818' : '#ffffff'
+          const bgColor = isDarkMode ? '#0f0f0f' : '#ffffff'
           return (
             <HomeVideosList data-testid="gaming" bgColor={bgColor}>
               {gamingVideosList.map(eachVideo => (

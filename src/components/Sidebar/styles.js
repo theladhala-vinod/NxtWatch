@@ -31,13 +31,12 @@ export const MenuItemLink = styled(Link)`
   display: flex;
   text-decoration: none;
   color: ${props => props.color};
-  font-weight: 600;
   padding: 8px;
 `
 export const MenuItemName = styled.p`
-  font-family: 'Roboto';
   color: ${props => props.color};
   width: 150px;
+  font-size: 14px;
   margin-left: 16px;
 `
 export const ContactUsHeading = styled.p`

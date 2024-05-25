@@ -20,15 +20,18 @@ const Sidebar = () => (
     {value => {
       const {isDarkMode, activeTab, setActiveTab} = value
 
-      const bgColor = isDarkMode ? '#0f0f0f' : '#ffffff'
-      const textColor = isDarkMode ? '#ffffff' : '#0f0f0f'
+      const bgColor = isDarkMode ? '#181818' : '#ffffff'
+      const textColor = isDarkMode ? '#ffffff' : '#181818'
+      const activeTabBgColor = isDarkMode ? '#424242' : '#f1f5f9'
 
       return (
         <SidebarContainer bgColor={bgColor}>
           <section>
             <MenuList>
               <MenuListItem
-                isActive={activeTab === 'HOME' ? '#d7dfe9' : 'transparent'}
+                isActive={
+                  activeTab === 'HOME' ? activeTabBgColor : 'transparent'
+                }
                 onClick={() => {
                   setActiveTab('HOME')
                 }}
@@ -42,7 +45,9 @@ const Sidebar = () => (
                 </MenuItemLink>
               </MenuListItem>
               <MenuListItem
-                isActive={activeTab === 'TRENDING' ? '#d7dfe9' : 'transparent'}
+                isActive={
+                  activeTab === 'TRENDING' ? activeTabBgColor : 'transparent'
+                }
                 onClick={() => {
                   setActiveTab('TRENDING')
                 }}
@@ -56,7 +61,9 @@ const Sidebar = () => (
                 </MenuItemLink>
               </MenuListItem>
               <MenuListItem
-                isActive={activeTab === 'GAMING' ? '#d7dfe9' : 'transparent'}
+                isActive={
+                  activeTab === 'GAMING' ? activeTabBgColor : 'transparent'
+                }
                 onClick={() => {
                   setActiveTab('GAMING')
                 }}
@@ -71,7 +78,9 @@ const Sidebar = () => (
               </MenuListItem>
               <MenuListItem
                 isActive={
-                  activeTab === 'SAVED-VIDEOS' ? '#d7dfe9' : 'transparent'
+                  activeTab === 'SAVED-VIDEOS'
+                    ? activeTabBgColor
+                    : 'transparent'
                 }
                 onClick={() => {
                   setActiveTab('SAVED-VIDEOS')
